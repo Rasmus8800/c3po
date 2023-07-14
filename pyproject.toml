@@ -21,6 +21,9 @@ ruff = "^0.0.278"
 coverage = "^7.2.7"
 pytest = "^7.4.0"
 
+[tool.poetry.group.types.dependencies]
+mypy = "^1.4.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -45,3 +48,17 @@ show_missing = true
 [tool.pytest.ini_options]
 pythonpath = ["sources"]
 testpaths = ["tests"]
+
+[tool.mypy]
+pretty = true
+python_version = "3.11"
+allow_any_generics = false
+allow_untyped_defs = false
+allow_untyped_calls = false
+allow_untyped_globals = false
+strict_optional = true
+implicit_optional = false
+strict_equality = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unreachable = true
