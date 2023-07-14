@@ -17,6 +17,10 @@ wavelink = "^2.6.0"
 black = "^23.7.0"
 ruff = "^0.0.278"
 
+[tool.poetry.group.tests.dependencies]
+coverage = "^7.2.7"
+pytest = "^7.4.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -30,3 +34,13 @@ preview = true
 safe = true
 line-length = 79
 target-version = ["py311"]
+[tool.coverage.run]
+branch = true
+source = ["sources"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.pytest.ini_options]
+pythonpath = ["sources"]
+testpaths = ["tests"]
