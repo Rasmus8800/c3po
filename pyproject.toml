@@ -34,6 +34,7 @@ preview = true
 safe = true
 line-length = 79
 target-version = ["py311"]
+
 [tool.coverage.run]
 branch = true
 source = ["sources"]
