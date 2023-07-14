@@ -13,6 +13,20 @@ python = "^3.11"
 discord = "^2.3.1"
 wavelink = "^2.6.0"
 
+[tool.poetry.group.linters.dependencies]
+black = "^23.7.0"
+ruff = "^0.0.278"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 79
+target-version = "py311"
+
+[tool.black]
+preview = true
+safe = true
+line-length = 79
+target-version = ["py311"]
