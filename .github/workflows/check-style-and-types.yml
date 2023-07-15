@@ -39,4 +39,4 @@ jobs:
           version: 1.5.1
           installer-parallel: true
       - name: Use mypy
-        run: mypy ./sources ./tests
+        run: poetry run mypy ./sources ./tests
