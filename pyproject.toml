@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "c3po"
 version = "0.0.0"
-description = "Music C3PO for Discord."
+description = "Музыкальный C3PO для Discord."
 authors = ["Rasmus8800 <posta22@inbox.ru>", "amayakasa <contact@amayakasa.xyz>"]
 readme = "README.md"
 packages = [
