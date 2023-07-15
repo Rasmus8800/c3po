@@ -1,0 +1,28 @@
+name: Styles
+
+on:
+  push:
+    branches: [primary, develop]
+  pull_request:
+   types: [opened, reopened]
+
+jobs:
+  styles:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.5.1
+          installer-parallel: true
+      - name: Use Black
+        uses: psf/black@stable
+        with:
+          options: "--check"
+          src: "./sources ./tests"
+      - name: Use Ruff
+        uses: chartboost/ruff-action@v1
+        with:
+          src: "./sources ./tests"
