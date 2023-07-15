@@ -1,14 +1,62 @@
 [tool.poetry]
 name = "c3po"
-version = "0.1.0"
-description = ""
-authors = ["sugaryDev <posta22@inbox.ru>"]
+version = "0.0.0"
+description = "Музыкальный C3PO для Discord."
+authors = ["Rasmus8800 <posta22@inbox.ru>", "amayakasa <contact@amayakasa.xyz>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+discord = "^2.3.1"
+wavelink = "^2.6.0"
+loguru = "^0.7.0"
 
+[tool.poetry.group.styles.dependencies]
+black = "^23.7.0"
+ruff = "^0.0.278"
+
+[tool.poetry.group.tests.dependencies]
+coverage = "^7.2.7"
+pytest = "^7.4.0"
+
+[tool.poetry.group.types.dependencies]
+mypy = "^1.4.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 79
+target-version = "py311"
+
+[tool.black]
+preview = true
+safe = true
+line-length = 79
+target-version = ["py311"]
+
+[tool.coverage.run]
+branch = true
+source = ["sources"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.pytest.ini_options]
+pythonpath = ["sources"]
+testpaths = ["tests"]
+
+[tool.mypy]
+pretty = true
+python_version = "3.11"
+allow_any_generics = false
+allow_untyped_defs = false
+allow_untyped_calls = false
+allow_untyped_globals = false
+strict_optional = true
+implicit_optional = false
+strict_equality = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unreachable = true
