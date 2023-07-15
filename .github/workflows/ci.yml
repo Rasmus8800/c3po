@@ -1,4 +1,4 @@
-name: Styles
+name: CI
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 
 jobs:
   styles:
+    name: Check styles
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -17,12 +18,25 @@ jobs:
         with:
           version: 1.5.1
           installer-parallel: true
-      - name: Use Black
+      - name: Use black
         uses: psf/black@stable
         with:
           options: "--check"
           src: "./sources ./tests"
-      - name: Use Ruff
+      - name: Use ruff
         uses: chartboost/ruff-action@v1
         with:
           src: "./sources ./tests"
+  types:
+    name: Check types
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Install and configure Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.5.1
+          installer-parallel: true
+      - name: Use mypy
+        run: mypy ./sources ./tests
