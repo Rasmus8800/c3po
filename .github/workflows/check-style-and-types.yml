@@ -31,9 +31,9 @@ jobs:
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --without types, tests
+        run: poetry install --without types,tests
       - name: Activate virtual environment
-        run: poetry shell
+        run: source .venv/bin/activate
       - name: Use black
         run: black sources tests
       - name: Use ruff
@@ -66,6 +66,6 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --without types,tests
       - name: Activate virtual environment
-        run: poetry shell
+        run: source .venv/bin/activate
       - name: Check types
         run: mypy sources tests
