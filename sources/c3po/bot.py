@@ -3,6 +3,7 @@
 from typing import Any
 
 from discord import Client, Intents
+from loguru import logger
 
 __all__ = ["C3PO"]
 
@@ -16,3 +17,9 @@ class C3PO(Client):
         :param intents: Намерения бота.
         """
         super().__init__(intents=intents, **options)
+
+    async def on_ready(self) -> None:
+        if not self.user:
+            logger.error("User cant be none!")
+        else:
+            logger.info(f"Logged in {self.user} ({self.user.id})!")
