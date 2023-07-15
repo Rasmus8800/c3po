@@ -32,12 +32,10 @@ jobs:
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --without types,tests
-      - name: Activate virtual environment
-        run: source .venv/bin/activate
       - name: Use black
-        run: black sources tests
+        run: poetry run black sources tests
       - name: Use ruff
-        run: ruff check sources tests
+        run: poetry run ruff check sources tests
   types:
     name: Check types
     runs-on: ubuntu-latest
@@ -65,7 +63,5 @@ jobs:
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --without types,tests
-      - name: Activate virtual environment
-        run: source .venv/bin/activate
       - name: Check types
-        run: mypy sources tests
+        run: poetry run mypy sources tests
