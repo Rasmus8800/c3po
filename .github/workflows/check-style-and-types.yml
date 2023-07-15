@@ -13,30 +13,57 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
       - name: Install and configure Poetry
         uses: snok/install-poetry@v1
         with:
           version: 1.5.1
           installer-parallel: true
+      - name: Load cached virtual environment
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --without types, tests
+      - name: Activate virtual environment
+        run: poetry shell
       - name: Use black
-        uses: psf/black@stable
-        with:
-          options: "--check"
-          src: "./sources ./tests"
+        run: black sources tests
       - name: Use ruff
-        uses: chartboost/ruff-action@v1
-        with:
-          src: "./sources ./tests"
+        run: ruff check sources tests
   types:
     name: Check types
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
       - name: Install and configure Poetry
         uses: snok/install-poetry@v1
         with:
           version: 1.5.1
           installer-parallel: true
-      - name: Use mypy
-        run: poetry run mypy ./sources ./tests
+      - name: Load cached virtual environment
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --without types, tests
+      - name: Activate virtual environment
+        run: poetry shell
+      - name: Check types
+        run: mypy sources tests
