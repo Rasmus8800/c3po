@@ -4,9 +4,8 @@ import os
 
 from discord import Intents
 
-from bot import C3PO
+from .bot import C3PO
 
-__all__ = []
 
 bot = C3PO(
     intents=Intents.default(),
