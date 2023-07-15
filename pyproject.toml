@@ -1,17 +1,15 @@
 [tool.poetry]
 name = "c3po"
 version = "0.0.0"
-description = "Music C3PO for Discord."
+description = "Музыкальный C3PO для Discord."
 authors = ["Rasmus8800 <posta22@inbox.ru>", "amayakasa <contact@amayakasa.xyz>"]
 readme = "README.md"
-packages = [
-    { include = "c3po", from = "sources" }
-]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 discord = "^2.3.1"
 wavelink = "^2.6.0"
+loguru = "^0.7.0"
 
 [tool.poetry.group.styles.dependencies]
 black = "^23.7.0"
