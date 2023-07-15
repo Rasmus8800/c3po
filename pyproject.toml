@@ -4,9 +4,6 @@ version = "0.0.0"
 description = "Музыкальный C3PO для Discord."
 authors = ["Rasmus8800 <posta22@inbox.ru>", "amayakasa <contact@amayakasa.xyz>"]
 readme = "README.md"
-packages = [
-    { include = "c3po", from = "sources" }
-]
 
 [tool.poetry.dependencies]
 python = "^3.11"
